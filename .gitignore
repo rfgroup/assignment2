@@ -1,3 +1,6 @@
+# At least for now, do not keep the db in src control
+*.db
+
 # For a basic Java project
 *.class
 

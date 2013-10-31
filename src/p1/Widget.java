@@ -13,11 +13,18 @@ public class Widget {
 
 	private String name;
 	private String description;
+    private double weight;
 
 	public Widget() {
 		name = null;
 		description = null;
 	}
+
+    public Widget(String name, String description, double weight) {
+        this.name = name;
+        this.description = description;
+        this.weight = weight;
+    }
 
 	public Widget(String n, String d) {
 		name = n;
@@ -44,9 +51,17 @@ public class Widget {
 		description = d;
 	}
 
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
 	@Override
 	public String toString() {
-		return "[Widget name: " + name + ", description: " + description + " ]";
+		return "[Widget name: " + name + ", description: " + description + ", weight: " + weight + " ]";
 	}
 
 }

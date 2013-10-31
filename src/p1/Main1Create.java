@@ -16,8 +16,9 @@ public class Main1Create {
 	    widgetList.add( new Widget( "Widget 1", "The first kind of widget") );
 	    widgetList.add( new Widget( "Widget 2", "The second kind of widget") );
 	    widgetList.add( new Widget( "Widget 3", "The third kind of widget") );
-	    widgetList.add( new Widget( "Widget 4", "The fourth kind of widget") );
-	    
+        widgetList.add( new Widget( "Widget 4", "The fourth kind of widget") );
+        widgetList.add( new Widget( "Widget 5", "The fifth kind of widget", 23.42) );
+
 	    // Print all
 	    for (Widget w : widgetList)
 	      System.out.println( w );
