@@ -4,25 +4,33 @@ import javax.persistence.*;
 
 @Entity
 public class Widget {
-
-    public Widget() {
-    }
-
-    public Widget(int quantity) {
-     this.quantity = quantity;
-    }
-
-    @Id
+	 
+	
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+	private String name;
+	private String description;
+	private int quantity;
 
+	
+	public Widget() {
+    	name = null;
+    	description = null;
+    	quantity = 0;
+    	}
+
+    public Widget(int quantity, String name,String description) {
+    	this.setDescription(description);
+    	this.name = name;
+    	this.quantity = quantity;
+    }
+   
     public long getId() {
         return id;
     }
 
-    @Column
-    private int quantity;
-
+   
     public int getQuantity() {
         return quantity;
     }
@@ -31,9 +39,7 @@ public class Widget {
         this.quantity = quantity;
     }
 
-    @Basic
-    private String name;
-
+   
     public String getName() {
         return name;
     }
@@ -41,4 +47,16 @@ public class Widget {
     public void setName(String name) {
         this.name = name;
     }
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String ToString(){
+		return "[Widget name: " + name + ", description: " + description + ", quanity: " + quantity + " ]";
+		
+	}
 }

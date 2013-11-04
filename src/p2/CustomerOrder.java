@@ -19,6 +19,7 @@ public class CustomerOrder {
 	private Collection<Widget> items;
 
 	public CustomerOrder(){
+		
 		items = new ArrayList<Widget>();
 	}
 

@@ -25,7 +25,7 @@ public class CreateData {
 
         Collection<Widget> widgets = new ArrayList<Widget>();
 
-        widgets.add(new Widget(20));
+        widgets.add(new Widget(20,"Widget#1","This widget does great things"));
 
         order.setCustomerName("Mike Haas").setWidgets(widgets);
     }
@@ -54,7 +54,7 @@ public class CreateData {
     public static void setUpWidgets() {
         List<Widget> widgets = new ArrayList<Widget>();
 
-        widgets.add(new Widget(34));
+        widgets.add(new Widget(20,"Widget#1","This widget does great things"));
 
         final String PERSISTENCE_UNIT_NAME = "WidgetOrders";
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
