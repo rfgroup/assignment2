@@ -55,7 +55,7 @@ public class CreateData {
     	List<Widget> widgets = new ArrayList<Widget>();
 
         widgets.add(new Widget(20,"Widget#1","Widget 1 Description"));
-        widgets.add(new Widget(20,"Widget#2","Widget 2 Description"));
+        widgets.add(new Widget(20,  "Widget#2","Widget 2 Description"));
         widgets.add(new Widget(20,"Widget#3","Widget 3 Description"));
         widgets.add(new Widget(20,"Widget#4","Widget 4 Description"));
         
