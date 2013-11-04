@@ -1,4 +1,4 @@
-package p4;
+package StoreManager;
 
 public class StoreManager {
 
