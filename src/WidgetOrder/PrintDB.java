@@ -1,7 +1,7 @@
 package WidgetOrder;
 
 import Entity.Order;
-import p1.Widget;
+import Entity.Widget;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -25,12 +25,14 @@ public class PrintDB {
         EntityManager em = factory.createEntityManager();
 
         // Get the entire Inventory of Widgets from the database
-        Query q = em.createQuery("select o from Order o");
-        List<Order> orders = q.getResultList();
+        Query q = em.createQuery("select w from Widget w");
+        List<Widget> widgets = q.getResultList();
+        
+        // Print all
+        for (Widget w : widgets)
+            System.out.println( w );
+        
         em.close();
 
-        // Print all
-        for (Order o : orders)
-            System.out.println( o );
     }
 }

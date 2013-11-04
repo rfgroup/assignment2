@@ -9,6 +9,7 @@ public class Widget {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+	
 	private String name;
 	private String description;
 	private int quantity;
@@ -55,7 +56,8 @@ public class Widget {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String ToString(){
+	@Override
+	public String toString(){
 		return "[Widget name: " + name + ", description: " + description + ", quanity: " + quantity + " ]";
 		
 	}

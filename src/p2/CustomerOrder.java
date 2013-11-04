@@ -13,9 +13,7 @@ public class CustomerOrder {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	private String customerName;
-
 	private Collection<Widget> items;
 
 	public CustomerOrder(){
