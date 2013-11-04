@@ -30,8 +30,8 @@ public class Order {
     	widgets = new ArrayList<Widget>();
 //    	date = new java.util.Date();
     	this.customerName = name;
-    	 
     }
+
     public long getID() {
         return id;
     }
@@ -79,7 +79,6 @@ public class Order {
     }
 
     @Basic
-    @Temporal(TemporalType.DATE)
     private Date created;
 
     public Date getCreated() {

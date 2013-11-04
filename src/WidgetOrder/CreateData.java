@@ -17,19 +17,21 @@ import java.util.Collection;
 import java.util.List;
 
 public class CreateData {
+    private final String PERSISTENCE_UNIT_NAME = "WidgetOrders";
 
-    public static void main(String[] args) {
-        setUpWidgets();
-      //  createOrder();
+    public CreateData run() {
+//        setUpWidgets();
+//        createOrder();
+
+        return this;
     }
 
-    private static void createOrder() {
+    private void createOrder() {
         
     	//creating order object
     	Entity.Order order = new Entity.Order("Aaron Cook");
     	
         //getting widget list from database
-        final String PERSISTENCE_UNIT_NAME = "WidgetOrders";
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = factory.createEntityManager();
 		Query x = em.createQuery("select w from Widget w");
@@ -50,7 +52,7 @@ public class CreateData {
         
     }
 
-    public static void setUpWidgets() {
+    private void setUpWidgets() {
         
     	List<Widget> widgets = new ArrayList<Widget>();
 
