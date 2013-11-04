@@ -73,7 +73,8 @@ public class CreateData {
     }
 
     public static void setUpWidgets() {
-        List<Widget> widgets = new ArrayList<Widget>();
+        
+    	List<Widget> widgets = new ArrayList<Widget>();
 
         widgets.add(new Widget(20,"Widget#1","Widget 1 Description"));
         widgets.add(new Widget(20,"Widget#2","Widget 2 Description"));
@@ -116,7 +117,7 @@ public class CreateData {
         
         Query q = em.createQuery("select w from Widget w");
 	    List<Widget> widgetInventory = q.getResultList();
-	    q = em.createQuery("select o from CustomerOrder o");
+	    q = em.createQuery("select o from Order o");
 	    List<CustomerOrder> ordersFromDB = q.getResultList();
 	    em.close();
 	    for (Widget w : widgetInventory)
