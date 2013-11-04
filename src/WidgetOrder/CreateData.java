@@ -19,7 +19,7 @@ import java.util.List;
 public class CreateData {
 
     public static void main(String[] args) {
-       deleteExistingDB();
+       //deleteExistingDB();
         setUpWidgets();
       //  createOrder();
     }
@@ -95,7 +95,12 @@ public class CreateData {
 	    orderList.get(2).addItem( widgets.get(2) );
 	    orderList.get(3).addItem( widgets.get(3) );
 	    orderList.get(3).addItem( widgets.get(0) );
-	    orderList.get(3).addItem( widgets.get(1) );	    
+	    orderList.get(3).addItem( widgets.get(1) );	  
+	    
+	    // Print all orders
+	    for (Order or : orderList)
+	      System.out.println( or );
+
         
         final String PERSISTENCE_UNIT_NAME = "WidgetOrders";
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);

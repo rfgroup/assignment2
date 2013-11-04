@@ -11,12 +11,12 @@ public class Order {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+	
     private Collection<Widget> widgets;
- 
+    
     @Temporal(TemporalType.TIMESTAMP) 
     private java.util.Date date;
-   
+    
     private String customerName;
   
     //default constructor
@@ -64,7 +64,7 @@ public class Order {
 	}
     @Override
     public String toString(){
-    	String result = "[Order #: " + id + ", from: " + customerName + ":- ";
+    	String result = "[Order #: " + id + ", from: " + customerName + " Date: " + date + ":- ";
 		if (widgets != null) 
 			for (Widget w : widgets)
 				result = result + w;
