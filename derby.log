@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Tue Nov 05 08:54:22 CST 2013:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-0142-28c1-dc5f-0000119deaa8 
-on database directory /Users/mike/school/csis343/assignment2/widgetorders.db with class loader sun.misc.Launcher$AppClassLoader@591ce4fe 
-Loaded from file:/Users/mike/Downloads/csis343.a2.libraries%202/derby.jar
+Tue Nov 05 09:24:14 CST 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-0142-28dd-33b0-0000062a2818 
+on database directory C:\Users\The Machince\git\assignment2\widgetorders.db with class loader sun.misc.Launcher$AppClassLoader@1497b7b1 
+Loaded from file:/C:/Users/The%20Machince/Desktop/csis343.a2.libraries/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.7.0_45-b18
-user.dir=/Users/mike/school/csis343/assignment2
-os.name=Mac OS X
-os.arch=x86_64
-os.version=10.9
+user.dir=C:\Users\The Machince\git\assignment2
+os.name=Windows 8
+os.arch=amd64
+os.version=6.2
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
