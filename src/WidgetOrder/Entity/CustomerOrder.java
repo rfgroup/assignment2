@@ -1,5 +1,7 @@
 package WidgetOrder.Entity;
 
+import org.eclipse.persistence.jpa.config.Cascade;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,7 +29,7 @@ public class CustomerOrder {
         return this;
     }
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.PERSIST)
     private Collection<Widget> widgets;
 
     public CustomerOrder addWidget(Widget widget) {
@@ -44,9 +46,5 @@ public class CustomerOrder {
 
     public Collection<Widget> getWidgets() {
         return widgets;
-    }
-
-    public void setWidgets(Collection<Widget> manyToMany) {
-        this.widgets = manyToMany;
     }
 }

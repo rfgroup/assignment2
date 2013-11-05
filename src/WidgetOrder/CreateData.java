@@ -27,11 +27,26 @@ public class CreateData {
         em.getTransaction().commit();
 
         // Fetch widgets from the DB
-        Collection<Widget> widgets = new WidgetRepository(em).findAll();
+        Collection<Widget> widgets = em.createNamedQuery("Widget.findAll", Widget.class).getResultList();
+
+        // Example showing how to retrieve one widget by the id
+        //Collection<Widget> widgets = em.createNamedQuery("Widget.findById", Widget.class).setParameter("id", 2).getResultList();
 
         // Create an order and persist
         CustomerOrder order = new CustomerOrder();
 
+        for(Widget widget : widgets) {
+            if(widget.getName() == "WidgetCracker") {
+                order.setCustomerName("Mike Haas").addWidget(widget);
+            }
+        }
+
+        em.getTransaction().begin();
+        em.persist(order);
+        em.persist(new CustomerOrder().addWidget(new Widget(99, "Flying Widget", "A widget that flies.")));
+        em.getTransaction().commit();
+
+        order = new CustomerOrder();
         for(Widget widget : widgets) {
             if(widget.getName() == "WidgetCracker") {
                 order.setCustomerName("Mike Haas").addWidget(widget);

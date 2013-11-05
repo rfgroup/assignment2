@@ -3,6 +3,10 @@ package WidgetOrder.Entity;
 import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Widget.findAll", query = "select w from Widget w"),
+    @NamedQuery(name = "Widget.findById", query = "select w from Widget w where w.id = :id")
+})
 public class Widget {
 	 
 	//data members
