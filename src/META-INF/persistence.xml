@@ -35,8 +35,8 @@
 
     </persistence-unit>
     <persistence-unit name="WidgetOrders" transaction-type="RESOURCE_LOCAL">
-        <class>Entity.Widget</class>
-        <class>Entity.CustomerOrder</class>
+        <class>WidgetOrder.Entity.Widget</class>
+        <class>WidgetOrder.Entity.CustomerOrder</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:derby:widgetorders.db;create=true"/>

@@ -1,4 +1,4 @@
-package Entity;
+package WidgetOrder.Entity;
 
 import javax.persistence.*;
 
