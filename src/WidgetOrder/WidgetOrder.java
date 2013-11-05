@@ -35,6 +35,7 @@ import javax.swing.JLabel;
 
 
 
+import WidgetOrder.Entity.CustomerOrder;
 import WidgetOrder.Entity.Widget;
 
 public class WidgetOrder extends JFrame {
@@ -45,7 +46,8 @@ public class WidgetOrder extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JList<Widget> listView;
-	
+	private static String selectedWidget;
+	private static String selectedDescription;
 	/**
 	 * Launch the application.
 	 */
@@ -88,6 +90,9 @@ public class WidgetOrder extends JFrame {
 		listView = new JList<Widget>(input_list);
 		listView.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
+				 selectedWidget = listView.getSelectedValue().getName();
+				 selectedDescription = listView.getSelectedValue().getDescription();
+				
 			}
 		});
 		listView.setBounds(33, 30, 381, 261);
@@ -96,16 +101,31 @@ public class WidgetOrder extends JFrame {
 		JButton btnProcessOrder = new JButton("Process Order");
 		btnProcessOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String x = textField.getText();
+				String customerName = textField_1.getText();
+				int quanity = Integer.parseInt(x);
+				Widget j = new Widget(quanity,selectedWidget,selectedDescription);
+				 CustomerOrder order = new CustomerOrder(customerName);
+				 order.addWidget(j);
+				
+				final String PERSISTENCE_UNIT_NAME = "WidgetOrders";
+				EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+			    EntityManager em = factory.createEntityManager();
+			    em.getTransaction().begin();
+		        em.persist(order);
+		        em.getTransaction().commit();
+		        Query q = em.createQuery("select o from CustomerOrder o");
+		  	    List<CustomerOrder> ordersFromDB = q.getResultList();
+		  	  for (CustomerOrder or : ordersFromDB)
+		  	  	    	System.out.println( or );
+		  	    em.close();
 			}
 		});
 		btnProcessOrder.setBounds(424, 268, 123, 23);
 		contentPane.add(btnProcessOrder);
 		
 		textField = new JTextField();
-		textField.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		textField.setBounds(437, 206, 86, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
@@ -119,10 +139,7 @@ public class WidgetOrder extends JFrame {
 		contentPane.add(lblSelectYourWidget);
 		
 		textField_1 = new JTextField();
-		textField_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		textField_1.setBounds(437, 150, 86, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
