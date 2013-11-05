@@ -86,14 +86,26 @@ public class WidgetOrder extends JFrame {
 	
 		
 		listView = new JList<Widget>(input_list);
+		listView.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+			}
+		});
 		listView.setBounds(33, 30, 381, 261);
 		contentPane.add(listView);
 		
 		JButton btnProcessOrder = new JButton("Process Order");
+		btnProcessOrder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnProcessOrder.setBounds(424, 268, 123, 23);
 		contentPane.add(btnProcessOrder);
 		
 		textField = new JTextField();
+		textField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		textField.setBounds(437, 206, 86, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
@@ -107,6 +119,10 @@ public class WidgetOrder extends JFrame {
 		contentPane.add(lblSelectYourWidget);
 		
 		textField_1 = new JTextField();
+		textField_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		textField_1.setBounds(437, 150, 86, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
