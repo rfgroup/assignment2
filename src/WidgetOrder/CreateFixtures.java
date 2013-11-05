@@ -2,22 +2,47 @@ package WidgetOrder;
 
 import WidgetOrder.Entity.CustomerOrder;
 import WidgetOrder.Entity.Widget;
-import WidgetOrder.Repository.WidgetRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.Collection;
 
-public class CreateData {
+public class CreateFixtures {
     private final String PERSISTENCE_UNIT_NAME = "WidgetOrders";
     private EntityManagerFactory emFactory;
 
-    public CreateData() {
+    public CreateFixtures() {
         this.emFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
     }
 
-    public CreateData run() {
+    public CreateFixtures run() {
+        createWidgets();
+
+        return this;
+    }
+
+    public void createWidgets() {
+        EntityManager em = emFactory.createEntityManager();
+
+        // Create some widgets and persist
+        em.getTransaction().begin();
+        em.persist(new Widget().setName("Widget Cracker")
+            .setDescription("This is a widget that cracks open other widgets")
+            .setQuantity(50));
+        em.persist(new Widget().setName("Flying Widget")
+            .setDescription("This is a widget that knows how to fly")
+            .setQuantity(4700));
+        em.persist(new Widget().setName("Widget Bin")
+            .setDescription("Keep all of your widgets nice and organized by storing them in a widget bin!")
+            .setQuantity(2));
+
+        em.getTransaction().commit();
+
+        em.close();
+    }
+
+    public CreateFixtures mikesTesting() {
         EntityManager em = emFactory.createEntityManager();
 
         // Create a widget and persist

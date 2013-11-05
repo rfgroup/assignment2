@@ -7,7 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.Collection;
 
-// Moved to using named queries, meaning we do not need to use the repository pattern
+// Probably won't need to use this anymore. JPA has named queries which I started using which means
+// we do not have to use the Repository pattern.
 public class WidgetRepository {
     private EntityManager em;
 
