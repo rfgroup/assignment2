@@ -7,8 +7,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -24,7 +27,8 @@ public class StoreManagerController implements Initializable {
 
     @FXML
     private ListView<Widget> listViewWidgets;
-    private ObservableList<Widget> items;
+    @FXML
+    private ObservableList<Widget> items = FXCollections.observableList(new ArrayList<Widget>());
 
     public StoreManagerController() {
         this.emFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -32,19 +36,24 @@ public class StoreManagerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        EntityManager em = emFactory.createEntityManager();
 
-        // Fetch widgets from the DB
-        Collection<Widget> widgets = em.createNamedQuery("Widget.findAll", Widget.class).getResultList();
-        //items = FXCollections.observableList((ListView<Widget>) widgets);
-
-        items = FXCollections.observableList(new ArrayList<Widget>(widgets));
         listViewWidgets.setItems(items);
+        //listViewWidgets.setCellFactory(new Callback<ListView<Widget>, ListCell<Widget>>() {
+        //    @Override
+        //    public ListCell<Widget> call(ListView<Widget> widgetListView) {
+        //        return new ListCell<Widget>();
+        //    }
+        //});
         items.add(new Widget(432, "name", "description"));
     }
 
     public void handleClick(ActionEvent actionEvent) {
-        items.add(new Widget(20, "new name", "new description"));
+        EntityManager em = emFactory.createEntityManager();
+// Fetch widgets from the DB
+        Collection<Widget> widgets = em.createNamedQuery("Widget.findAll", Widget.class).getResultList();
+        for (Widget widget : widgets) {
+            items.add(widget);
+        }
 
     }
 
