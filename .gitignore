@@ -1,5 +1,6 @@
 # At least for now, do not keep the db in src control
 *.db
+derby.log
 
 # For a basic Java project
 *.class
