@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<VBox disable="false" maxHeight="500.0" maxWidth="640.0" minHeight="-1.0" minWidth="-Infinity" prefHeight="500.0" prefWidth="640.0" visible="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="StoreManager.StoreManagerController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#quitApp" text="Quit" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <children>
+        <ListView fx:id="listViewWidgets" layoutX="14.0" layoutY="14.0" prefHeight="277.0" prefWidth="612.0" />
+        <Button layoutX="37.0" layoutY="327.0" mnemonicParsing="false" onAction="#handleClick" text="Button" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>

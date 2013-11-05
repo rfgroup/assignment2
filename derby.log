@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Mon Nov 04 23:37:22 CST 2013:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-0142-26c3-e687-00001188b188 
+Tue Nov 05 02:24:57 CST 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-0142-275d-55a0-0000119dbe78 
 on database directory /Users/mike/school/csis343/assignment2/widgetorders.db with class loader sun.misc.Launcher$AppClassLoader@591ce4fe 
 Loaded from file:/Users/mike/Downloads/csis343.a2.libraries%202/derby.jar
 java.vendor=Oracle Corporation
