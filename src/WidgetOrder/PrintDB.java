@@ -1,6 +1,5 @@
 package WidgetOrder;
 
-import Entity.Order;
 import Entity.Widget;
 
 import javax.persistence.EntityManager;

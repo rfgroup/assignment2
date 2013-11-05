@@ -44,7 +44,7 @@ public class CustomerOrder {
 
 	@Override
 	public String toString() {
-		String result = "[Order #: " + id + ", from: " + customerName + ":- ";
+		String result = "[CustomerOrder #: " + id + ", from: " + customerName + ":- ";
 		if (items != null) 
 			for (Widget w : items)
 				result = result + w;
