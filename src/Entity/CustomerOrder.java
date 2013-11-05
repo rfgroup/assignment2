@@ -1,6 +1,7 @@
 package Entity;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 public class CustomerOrder {
@@ -21,5 +22,16 @@ public class CustomerOrder {
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
+    }
+
+    @ManyToMany
+    private Collection<Widget> manyToMany;
+
+    public Collection<Widget> getManyToMany() {
+        return manyToMany;
+    }
+
+    public void setManyToMany(Collection<Widget> manyToMany) {
+        this.manyToMany = manyToMany;
     }
 }

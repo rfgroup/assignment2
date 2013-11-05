@@ -19,7 +19,7 @@ public class CreateData {
 //        createOrder();
 
         CustomerOrder order = new CustomerOrder();
-        order.setCustomerName("Mike Haas");
+        order.setCustomerName("Jack");
 
         EntityManager em = emFactory.createEntityManager();
 
