@@ -1,6 +1,7 @@
 package StoreManager;
 
 import WidgetOrder.Entity.Widget;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -48,7 +49,6 @@ public class StoreManagerController implements Initializable {
     }
 
     public void quitApp(ActionEvent actionEvent) {
-        Stage primaryStage = (Stage) listViewWidgets.getScene().getWindow();
-        primaryStage.close();
+        Platform.exit();
     }
 }
