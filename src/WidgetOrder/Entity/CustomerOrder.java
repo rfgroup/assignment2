@@ -1,10 +1,10 @@
 package WidgetOrder.Entity;
 
-import org.eclipse.persistence.jpa.config.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 @Entity
 public class CustomerOrder {
@@ -46,5 +46,22 @@ public class CustomerOrder {
 
     public Collection<Widget> getWidgets() {
         return widgets;
+    }
+
+    @Basic
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date created;
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    @PrePersist
+    public void created() {
+        created = new Date();
     }
 }

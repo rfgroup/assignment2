@@ -1,6 +1,7 @@
 package WidgetOrder.Entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @NamedQueries({
@@ -69,4 +70,21 @@ public class Widget {
 		return "[Widget name: " + name + ", description: " + description + ", quanity: " + quantity + " ]";
 		
 	}
+
+    @Basic
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date created;
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    @PrePersist
+    public void created() {
+        created = new Date();
+    }
 }
