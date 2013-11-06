@@ -2,7 +2,6 @@ package StoreManager;
 
 import WidgetOrder.Entity.EntityManagerContainer;
 import WidgetOrder.Entity.Order;
-import WidgetOrder.Entity.Widget;
 
 import java.awt.EventQueue;
 
@@ -10,22 +9,28 @@ import javax.persistence.EntityManager;
 import javax.swing.JFrame;
 import javax.swing.JList;
 
-import java.awt.BorderLayout;
 import java.util.Collection;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-import java.awt.GridLayout;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.JSpinner;
 import java.awt.Color;
 import javax.swing.SwingConstants;
-import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
+/**
+ * <p>Title: StoreManager</p>
+ * <p>Description: CS 343 Assignment #2</p>
+ * @author Michael Haas
+ * @email aaron.cook@my.uwrf.edu, michael.haas@my.uwrf.edu,
+ * 			kyle.kornetske@my.uwrf.edu kyle.kolstad@my.uwrf.edu
+ * @date November 5th 2013
+ * @team Group 4
+ */
 public class StoreManager {
 
 	private JFrame frmStoreManager;
@@ -57,6 +62,20 @@ public class StoreManager {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+        // Fetch all orders from the DB and sort by date to fulfill first come first serve
+        EntityManager em = new EntityManagerContainer().getEm();
+        Collection<Order> orders = em.createNamedQuery("Order.findAll", Order.class).getResultList();
+        Collections.sort((List<Order>) orders, new Comparator<Order>() {
+            @Override
+            public int compare(Order o1, Order o2) {
+                if (o1.getCreated() == null || o2.getCreated() == null) {
+                    return 0;
+                }
+                return o1.getCreated().compareTo(o2.getCreated());
+            }
+        });
+        em.close();
+
 		frmStoreManager = new JFrame();
 		frmStoreManager.setTitle("Store Manager");
 		frmStoreManager.setBounds(100, 100, 600, 500);
@@ -79,7 +98,9 @@ public class StoreManager {
 		gbc_scrollPane.gridy = 1;
 		frmStoreManager.getContentPane().add(scrollPane, gbc_scrollPane);
 		
-		JList ordersJList = new JList();
+		JList ordersJList = new JList(orders.toArray());
+        ordersJList.setFixedCellHeight(50);
+        ordersJList.setCellRenderer(new OrderListCellRenderer());
 		scrollPane.setViewportView(ordersJList);
 		
 		JLabel lblNewLabel = new JLabel("Orders marked red have more widgets ordered than there is in inventory.");
@@ -91,14 +112,5 @@ public class StoreManager {
 		gbc_lblNewLabel.gridx = 2;
 		gbc_lblNewLabel.gridy = 13;
 		frmStoreManager.getContentPane().add(lblNewLabel, gbc_lblNewLabel);
-
-        initializeOrdersJList();
 	}
-
-    private void initializeOrdersJList() {
-        EntityManager em = new EntityManagerContainer().getEm();
-        Collection<Order> orders = em.createNamedQuery("Order.findAll", Order.class).getResultList();
-        em.close();
-    }
-
 }

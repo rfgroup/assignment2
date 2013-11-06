@@ -1,18 +1,18 @@
 package StoreManager;
 
 import WidgetOrder.Entity.Order;
-import WidgetOrder.Entity.Widget;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Collection;
 
 /**
- * Created with IntelliJ IDEA.
- * User: mike
- * Date: 11/5/13
- * Time: 11:44 PM
- * To change this template use File | Settings | File Templates.
+ * <p>Title: OrderListCellRenderer </p>
+ * <p>Description: CS 343 Assignment #2</p>
+ * @author Michael Haas
+ * @email aaron.cook@my.uwrf.edu, michael.haas@my.uwrf.edu,
+ * 			kyle.kornetske@my.uwrf.edu kyle.kolstad@my.uwrf.edu
+ * @date November 5th 2013
+ * @team Group 4
  */
 public class OrderListCellRenderer extends JLabel implements ListCellRenderer {
 
@@ -29,15 +29,14 @@ public class OrderListCellRenderer extends JLabel implements ListCellRenderer {
         Order order = (Order) value;
 
         // System currently only supports one type of Widget per order, allowing us
-        // to assume that there is just one widget in the list.
+        // to assume that there is just one widget in the list. If the amount ordered is greater than
+        // the quantity in inventory for a widget, mark the background red.
         if (order.getAmountOrdered() > order.getWidgets().iterator().next().getQuantity()) {
             setBackground(Color.RED);
         } else {
             setBackground(list.getBackground());
         }
 
-        setMinimumSize(new Dimension(-1, 50));
-        setSize(400, 100);
         setText(value.toString());
 
         return this;
