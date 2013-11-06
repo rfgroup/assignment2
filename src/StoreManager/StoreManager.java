@@ -12,6 +12,7 @@ import javax.swing.JList;
 
 import java.awt.BorderLayout;
 import java.util.Collection;
+import javax.swing.JScrollPane;
 
 public class StoreManager {
 
@@ -55,11 +56,12 @@ public class StoreManager {
         EntityManager em = new EntityManagerContainer().getEm();
         Collection<Order> orders = em.createNamedQuery("Order.findAll", Order.class).getResultList();
         em.close();
-
-        JList ordersJList = new JList(orders.toArray());
-        ordersJList.setFixedCellHeight(50);
-        ordersJList.setCellRenderer(new OrderListCellRenderer());
-        frame.getContentPane().add(ordersJList, BorderLayout.CENTER);
+        
+        JScrollPane scrollPane = new JScrollPane();
+        frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+        
+        JList ordersJList = new JList();
+        scrollPane.setViewportView(ordersJList);
     }
 
 }
