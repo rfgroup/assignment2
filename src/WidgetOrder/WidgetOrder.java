@@ -1,13 +1,8 @@
 package WidgetOrder;
 
 import javax.persistence.*;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JScrollBar;
-import javax.swing.JList;
-import javax.swing.JButton;
-import javax.swing.JTextField;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.util.Collection;
 import java.util.List;
 import java.util.Vector;
-import javax.swing.JLabel;
 
 import WidgetOrder.Entity.Order;
 import WidgetOrder.Entity.Widget;
@@ -23,9 +17,10 @@ import WidgetOrder.Entity.Widget;
 /**
  * <p>Title: Widget Inventory s</p>
  * <p>Description: CS 343 Assignment #2</p>
+ *
  * @author Aaron Cook, Kyle Kornetske, Michael Haas, Kyle Kolstad
  * @email aaron.cook@my.uwrf.edu, michael.haas@my.uwrf.edu,
- * 			kyle.kornetske@my.uwrf.edu kyle.kolstad@my.uwrf.edu
+ * kyle.kornetske@my.uwrf.edu kyle.kolstad@my.uwrf.edu
  * @date November 5th 2013
  * @team Group 4
  */
@@ -39,28 +34,6 @@ public class WidgetOrder extends JFrame {
     private JList<Widget> listView;
     private Widget selectedWidget;
 
-    public static void main(String[] args) {
-
-        //Fetching Widgets from DB to load into JList
-        new CreateFixtures().run();
-        Vector<Widget> items = new Vector<Widget>();
-        final String PERSISTENCE_UNIT_NAME = "WidgetOrders";
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        EntityManager em = factory.createEntityManager();
-
-        Collection<Widget> widgets = em.createNamedQuery("Widget.findAll", Widget.class).getResultList();
-        for (Widget widget : widgets) {
-            items.add(widget);
-        }
-
-        em.close();
-
-        //start GUI
-        WidgetOrder frame = new WidgetOrder(items);
-        frame.setVisible(true);
-
-    }
-
     /**
      * Create the frame.
      */
@@ -68,7 +41,7 @@ public class WidgetOrder extends JFrame {
 
         //creating frame
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(100, 100, 603, 366);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -100,19 +73,28 @@ public class WidgetOrder extends JFrame {
                 try {
                     int quantity = Integer.parseInt(textField.getText());
                     String customerName = textField_1.getText();
-                    Order order = new Order(customerName,quantity);
+                    Order order = new Order(customerName, quantity);
                     order.addWidget(selectedWidget);
 
                     final String PERSISTENCE_UNIT_NAME = "WidgetOrders";
                     EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
                     EntityManager em = factory.createEntityManager();
+
                     em.getTransaction().begin();
                     em.persist(order);
                     em.getTransaction().commit();
+
+                    // Get widgets and orders from the DB
+                    // JPA convention is to suppress warnings here because we can count
+                    // on any ORM solution to return the type of object we asked for.
                     Query q = em.createQuery("select w from Widget w");
+                    @SuppressWarnings("unchecked")
                     List<Widget> widgetInventory = q.getResultList();
+
                     q = em.createQuery("select o from CustomerOrder o");
+                    @SuppressWarnings("unchecked")
                     List<Order> ordersFromDB = q.getResultList();
+
                     for (Order or : ordersFromDB)
                         System.out.println(or);
                     for (Widget w : widgetInventory)
@@ -157,5 +139,27 @@ public class WidgetOrder extends JFrame {
         contentPane.add(lblEnterCustomerName);
     }
 
+    public static void main(String[] args) {
+        // We use this to generate some sample data for the DB, if you run this program multiple
+        // times then the same fixtures keep getting added again and again.
+        new CreateFixtures().run();
 
+        //Fetching Widgets from DB to load into JList
+        Vector<Widget> items = new Vector<Widget>();
+        final String PERSISTENCE_UNIT_NAME = "WidgetOrders";
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManager em = factory.createEntityManager();
+
+        Collection<Widget> widgets = em.createNamedQuery("Widget.findAll", Widget.class).getResultList();
+        for (Widget widget : widgets) {
+            items.add(widget);
+        }
+
+        em.close();
+
+        //start GUI
+        WidgetOrder frame = new WidgetOrder(items);
+        frame.setVisible(true);
+
+    }
 }

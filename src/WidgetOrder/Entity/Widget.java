@@ -11,6 +11,15 @@ package WidgetOrder.Entity;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * <p>Title: Widget</p>
+ * <p>Description: CS 343 Assignment #2</p>
+ * @author Aaron Cook, Kyle Kornetske, Michael Haas, Kyle Kolstad
+ * @email aaron.cook@my.uwrf.edu, michael.haas@my.uwrf.edu,
+ * 			kyle.kornetske@my.uwrf.edu kyle.kolstad@my.uwrf.edu
+ * @date November 5th 2013
+ * @team Group 4
+ */
 @Entity
 @NamedQueries({
         @NamedQuery(name = "Widget.findAll", query = "select w from Widget w"),
@@ -20,12 +29,6 @@ import java.util.Date;
 public class Widget {
 
     public Widget() {}
-
-    public Widget(int quantity, String name,String description) {
-        this.setDescription(description);
-        this.name = name;
-        this.quantity = quantity;
-    }
 	 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

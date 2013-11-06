@@ -2,14 +2,12 @@ package WidgetOrder.Entity;
 
 import javax.persistence.*;
 
-
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
 /**
- * <p>Title: Widget Inventory s</p>
+ * <p>Title: Order</p>
  * <p>Description: CS 343 Assignment #2</p>
  * @author Aaron Cook, Kyle Kornetske, Michael Haas, Kyle Kolstad
  * @email aaron.cook@my.uwrf.edu, michael.haas@my.uwrf.edu,

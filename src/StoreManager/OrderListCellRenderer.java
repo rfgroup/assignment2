@@ -37,6 +37,7 @@ public class OrderListCellRenderer extends JLabel implements ListCellRenderer {
             setBackground(list.getBackground());
         }
 
+        setHorizontalAlignment(LEFT);
         setText(value.toString());
 
         return this;

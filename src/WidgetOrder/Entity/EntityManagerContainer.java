@@ -5,11 +5,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- * Created with IntelliJ IDEA.
- * User: mike
- * Date: 11/5/13
- * Time: 9:45 PM
- * To change this template use File | Settings | File Templates.
+ * <p>Title: EntityManagerContainer</p>
+ * <p>Description: I'm using this class to sort of simulate a real life scenario where
+ * you would get the EntityManager from a DIC container.</p>
+ * @author Michael Haas
+ * @email aaron.cook@my.uwrf.edu, michael.haas@my.uwrf.edu,
+ * 			kyle.kornetske@my.uwrf.edu kyle.kolstad@my.uwrf.edu
+ * @date November 5th 2013
+ * @team Group 4
  */
 public class EntityManagerContainer {
     private final String PERSISTENCE_UNIT_NAME = "WidgetOrders";
