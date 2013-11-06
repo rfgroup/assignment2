@@ -48,7 +48,7 @@ public class Order {
         return this;
     }
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany
     private Collection<Widget> widgets;
 
     public Order addWidget(Widget widget) {
