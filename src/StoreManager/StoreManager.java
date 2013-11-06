@@ -13,6 +13,7 @@ import javax.swing.JList;
 import java.awt.BorderLayout;
 import java.util.Collection;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class StoreManager {
 
@@ -58,6 +59,7 @@ public class StoreManager {
         em.close();
         
         JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
 
         JList ordersJList = new JList(orders.toArray());
