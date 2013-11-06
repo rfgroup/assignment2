@@ -54,6 +54,8 @@ public class WidgetOrder extends JFrame {
             items.add(widget);
         }
 
+        em.close();
+
         //start GUI
         WidgetOrder frame = new WidgetOrder(items);
         frame.setVisible(true);
