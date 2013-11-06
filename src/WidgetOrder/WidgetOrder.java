@@ -15,7 +15,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollBar;
-
 import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -23,23 +22,16 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Vector;
-
 import javax.swing.JLabel;
-
-
-
-
-
 import WidgetOrder.Entity.CustomerOrder;
 import WidgetOrder.Entity.Widget;
 
 public class WidgetOrder extends JFrame {
 	
-	
+	//private data members
 	
 	private JPanel contentPane;
 	private JTextField textField;
@@ -47,9 +39,7 @@ public class WidgetOrder extends JFrame {
 	private JList<Widget> listView;
 	private static String selectedWidget;
 	private static String selectedDescription;
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 
 					//Fetching Widgets from DB to load into JList
@@ -74,6 +64,9 @@ public class WidgetOrder extends JFrame {
 	 * Create the frame.
 	 */
 	public WidgetOrder(Vector<Widget> input_list) {
+		
+		//creating frame
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 603, 366);
 		contentPane = new JPanel();
@@ -81,28 +74,28 @@ public class WidgetOrder extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		//Setting up scrollbar for JList
+		
 		JScrollBar scrollBar = new JScrollBar();
 		scrollBar.setBounds(396, 30, 19, 261);
 		contentPane.add(scrollBar);
-		
-	
+	   
+		//creating JList with the Widgets from the DB
 		
 		listView = new JList<Widget>(input_list);
 		listView.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				 selectedWidget = listView.getSelectedValue().getName();
-				 selectedDescription = listView.getSelectedValue().getDescription();
-				
-			}
-		});
+				 selectedDescription = listView.getSelectedValue().getDescription();}});
 		listView.setBounds(33, 30, 381, 261);
 		contentPane.add(listView);
 		
+		//creating button with an action listener that adds the order to the DB
+		
 		JButton btnProcessOrder = new JButton("Process Order");
 		btnProcessOrder.addActionListener(new ActionListener() {
-			//adding the order to the database
 			public void actionPerformed(ActionEvent e) {
-			try{	
+			  try{	
 				String x = textField.getText();
 				String customerName = textField_1.getText();
 				int quanity = Integer.parseInt(x);
@@ -138,11 +131,19 @@ public class WidgetOrder extends JFrame {
 		btnProcessOrder.setBounds(424, 268, 123, 23);
 		contentPane.add(btnProcessOrder);
 		
+		//creating textfields for gui
 		
 		textField = new JTextField();
 		textField.setBounds(437, 206, 86, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(437, 150, 86, 20);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
+		
+		//creating labels
 		
 		JLabel lblEnterQty = new JLabel("Enter Qty");
 		lblEnterQty.setBounds(455, 181, 53, 14);
@@ -151,11 +152,6 @@ public class WidgetOrder extends JFrame {
 		JLabel lblSelectYourWidget = new JLabel("Select Your Widget");
 		lblSelectYourWidget.setBounds(137, 11, 137, 14);
 		contentPane.add(lblSelectYourWidget);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(437, 150, 86, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
 		
 		JLabel lblEnterCustomerName = new JLabel("Enter Customer Name");
 		lblEnterCustomerName.setBounds(424, 125, 137, 14);
