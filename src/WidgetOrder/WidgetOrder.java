@@ -99,7 +99,7 @@ public class WidgetOrder extends JFrame {
                 try {
                     int quantity = Integer.parseInt(textField.getText());
                     String customerName = textField_1.getText();
-                    Order order = new Order(customerName);
+                    Order order = new Order(customerName,quantity);
                     order.addWidget(selectedWidget);
 
                     final String PERSISTENCE_UNIT_NAME = "WidgetOrders";
