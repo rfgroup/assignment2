@@ -64,7 +64,8 @@ public class WidgetOrder extends JFrame {
 			            items.add(widget);
 			        }
 				   
-					WidgetOrder frame = new WidgetOrder(items);
+					//start GUI
+			        WidgetOrder frame = new WidgetOrder(items);
 					frame.setVisible(true);
 
 	}
@@ -99,6 +100,7 @@ public class WidgetOrder extends JFrame {
 		
 		JButton btnProcessOrder = new JButton("Process Order");
 		btnProcessOrder.addActionListener(new ActionListener() {
+			//adding the order to the database
 			public void actionPerformed(ActionEvent e) {
 			try{	
 				String x = textField.getText();
@@ -136,8 +138,8 @@ public class WidgetOrder extends JFrame {
 		btnProcessOrder.setBounds(424, 268, 123, 23);
 		contentPane.add(btnProcessOrder);
 		
-		textField = new JTextField();
 		
+		textField = new JTextField();
 		textField.setBounds(437, 206, 86, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
@@ -151,7 +153,6 @@ public class WidgetOrder extends JFrame {
 		contentPane.add(lblSelectYourWidget);
 		
 		textField_1 = new JTextField();
-		
 		textField_1.setBounds(437, 150, 86, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
