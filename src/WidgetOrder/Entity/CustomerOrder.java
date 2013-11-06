@@ -10,6 +10,9 @@ package WidgetOrder.Entity;
  */ 
 
 import javax.persistence.*;
+
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -22,6 +25,10 @@ public class CustomerOrder {
 
     public CustomerOrder() {
         widgets = new ArrayList<Widget>();
+    }
+    public CustomerOrder(String s){
+    	 customerName = s;
+    	 widgets = new ArrayList<Widget>();
     }
 
     @Basic
@@ -72,4 +79,12 @@ public class CustomerOrder {
     public void created() {
         created = new Date();
     }
+    @Override
+	public String toString() {
+		String result = "[Order #: " + id + ", from: " + customerName + ":- ";
+		if (widgets != null) 
+			for (Widget w : widgets)
+				result = result + w;
+		return result + " ]";
+	}
 }
