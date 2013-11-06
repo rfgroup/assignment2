@@ -59,8 +59,11 @@ public class StoreManager {
         
         JScrollPane scrollPane = new JScrollPane();
         frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
-        
-        JList ordersJList = new JList();
+
+        JList ordersJList = new JList(orders.toArray());
+        ordersJList.setFixedCellHeight(50);
+        ordersJList.setCellRenderer(new OrderListCellRenderer());
+
         scrollPane.setViewportView(ordersJList);
     }
 
