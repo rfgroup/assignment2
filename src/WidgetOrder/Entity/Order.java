@@ -26,12 +26,13 @@ public class Order {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+	private int amountOrdered; 
     public Order() {
         widgets = new ArrayList<Widget>();
     }
-    public Order(String s){
+    public Order(String s,int x){
     	 customerName = s;
+    	 amountOrdered = x;
     	 widgets = new ArrayList<Widget>();
     }
 
@@ -41,7 +42,13 @@ public class Order {
     public String getCustomerName() {
         return customerName;
     }
-
+    public int getAmountordered() {
+        return amountOrdered;
+    }
+    public Order setAmountOrdered(int x){
+    	this.amountOrdered = x;
+    	return this;
+    }
     public Order setCustomerName(String customerName) {
         this.customerName = customerName;
 
@@ -85,7 +92,7 @@ public class Order {
     }
     @Override
 	public String toString() {
-		String result = "[Order #: " + id + ", from: " + customerName + ":- ";
+		String result = "[Order #: " + id + ", from: " + customerName + " Amount you ordered: " + amountOrdered + ":- ";
 		if (widgets != null) 
 			for (Widget w : widgets)
 				result = result + w;
