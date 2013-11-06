@@ -52,7 +52,7 @@ public class Order {
     @Basic
     private int amountOrdered;
 
-    public int getAmountordered() {
+    public int getAmountOrdered() {
         return amountOrdered;
     }
 
