@@ -26,7 +26,7 @@ public class Order {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-	private int amountOrdered; 
+
     public Order() {
         widgets = new ArrayList<Widget>();
     }
@@ -42,17 +42,23 @@ public class Order {
     public String getCustomerName() {
         return customerName;
     }
-    public int getAmountordered() {
-        return amountOrdered;
-    }
-    public Order setAmountOrdered(int x){
-    	this.amountOrdered = x;
-    	return this;
-    }
+
     public Order setCustomerName(String customerName) {
         this.customerName = customerName;
 
         return this;
+    }
+
+    @Basic
+    private int amountOrdered;
+
+    public int getAmountordered() {
+        return amountOrdered;
+    }
+
+    public Order setAmountOrdered(int x){
+    	this.amountOrdered = x;
+    	return this;
     }
 
     @OneToMany

@@ -55,10 +55,12 @@ public class CreateFixtures {
     private void createOrders() {
         EntityManager em = emFactory.createEntityManager();
 
-        Widget widget = em.createNamedQuery("Widget.findByName", Widget.class).setParameter("name", "Widget Bin").getSingleResult();
+        Collection<Widget> widgets = em.createNamedQuery("Widget.findByName", Widget.class)
+                .setParameter("name", "Widget Bin")
+                .getResultList();
 
         em.getTransaction().begin();
-        em.persist(new Order().setCustomerName("Mike Haas").addWidget(widget));
+        em.persist(new Order().setCustomerName("Mike Haas").addWidget(widgets.iterator().next()));
         em.getTransaction().commit();
 
         em.close();

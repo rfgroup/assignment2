@@ -2,7 +2,6 @@ package StoreManager;
 
 import WidgetOrder.Entity.EntityManagerContainer;
 import WidgetOrder.Entity.Order;
-import WidgetOrder.Entity.Widget;
 
 import java.awt.EventQueue;
 
@@ -11,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 
 import java.awt.BorderLayout;
-import java.util.ArrayList;
 import java.util.Collection;
 
 public class StoreManager {
