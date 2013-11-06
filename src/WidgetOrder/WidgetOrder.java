@@ -8,15 +8,14 @@ package WidgetOrder;
  * @date November 5th 2013
  * @team Group 4
  */ 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+
 
 import javax.persistence.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollBar;
-import javax.swing.JSlider;
+
 import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -24,14 +23,14 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.Label;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JLabel;
+
+
 
 
 
@@ -101,6 +100,7 @@ public class WidgetOrder extends JFrame {
 		JButton btnProcessOrder = new JButton("Process Order");
 		btnProcessOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			try{	
 				String x = textField.getText();
 				String customerName = textField_1.getText();
 				int quanity = Integer.parseInt(x);
@@ -114,13 +114,25 @@ public class WidgetOrder extends JFrame {
 			    em.getTransaction().begin();
 		        em.persist(order);
 		        em.getTransaction().commit();
-		        Query q = em.createQuery("select o from CustomerOrder o");
+		        Query q = em.createQuery("select w from Widget w");
+			    List<Widget> widgetInventory = q.getResultList();
+		        q = em.createQuery("select o from CustomerOrder o");
 		  	    List<CustomerOrder> ordersFromDB = q.getResultList();
 		  	  for (CustomerOrder or : ordersFromDB)
 		  	  	    	System.out.println( or );
+		  	  for (Widget w : widgetInventory)
+			      System.out.println( w );
 		  	    em.close();
+		  	    
+			
 			}
-		});
+			 catch(NullPointerException v){
+				 System.err.println("NullPointerException: Please Enter a Customer Name and a Desired Quanity");
+			}
+			catch(NumberFormatException v){
+				System.err.println("Please Enter Customer Name and Quanity");
+			}
+		}});
 		btnProcessOrder.setBounds(424, 268, 123, 23);
 		contentPane.add(btnProcessOrder);
 		
