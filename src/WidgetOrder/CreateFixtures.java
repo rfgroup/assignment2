@@ -63,49 +63,4 @@ public class CreateFixtures {
 
         em.close();
     }
-
-    //public CreateFixtures mikesTesting() {
-    //    EntityManager em = emFactory.createEntityManager();
-    //
-    //    // Create a widget and persist
-    //    em.getTransaction().begin();
-    //    em.persist(new Widget(23, "Widget1", "description"));
-    //    em.persist(new Widget(74, "WidgetCracker", "This widget cracks other widgets open."));
-    //    em.getTransaction().commit();
-    //
-    //    // Fetch widgets from the DB
-    //    Collection<Widget> widgets = em.createNamedQuery("Widget.findAll", Widget.class).getResultList();
-    //
-    //    // Example showing how to retrieve one widget by the id
-    //    //Collection<Widget> widgets = em.createNamedQuery("Widget.findById", Widget.class).setParameter("id", 2).getResultList();
-    //
-    //    // Create an order and persist
-    //    Order order = new Order();
-    //
-    //    for(Widget widget : widgets) {
-    //        if(widget.getName() == "WidgetCracker") {
-    //            order.setCustomerName("Mike Haas").addWidget(widget);
-    //        }
-    //    }
-    //
-    //    em.getTransaction().begin();
-    //    em.persist(order);
-    //    em.persist(new Order().addWidget(new Widget(99, "Flying Widget", "A widget that flies.")));
-    //    em.getTransaction().commit();
-    //
-    //    order = new Order();
-    //    for(Widget widget : widgets) {
-    //        if(widget.getName() == "WidgetCracker") {
-    //            order.setCustomerName("Mike Haas").addWidget(widget);
-    //        }
-    //    }
-    //
-    //    em.getTransaction().begin();
-    //    em.persist(order);
-    //    em.getTransaction().commit();
-    //
-    //    em.close();
-    //
-    //    return this;
-    //}
 }

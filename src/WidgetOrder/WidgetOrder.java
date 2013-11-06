@@ -38,8 +38,7 @@ public class WidgetOrder extends JFrame {
     private JTextField textField;
     private JTextField textField_1;
     private JList<Widget> listView;
-    private static String selectedWidget;
-    private static String selectedDescription;
+    private Widget selectedWidget;
 
     public static void main(String[] args) {
 
@@ -86,8 +85,7 @@ public class WidgetOrder extends JFrame {
         listView = new JList<Widget>(input_list);
         listView.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
-                selectedWidget = listView.getSelectedValue().getName();
-                selectedDescription = listView.getSelectedValue().getDescription();
+                selectedWidget = listView.getSelectedValue();
             }
         });
         listView.setBounds(33, 30, 381, 261);
@@ -99,12 +97,10 @@ public class WidgetOrder extends JFrame {
         btnProcessOrder.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    String x = textField.getText();
+                    int quantity = Integer.parseInt(textField.getText());
                     String customerName = textField_1.getText();
-                    int quanity = Integer.parseInt(x);
-                    Widget j = new Widget(quanity, selectedWidget, selectedDescription);
                     Order order = new Order(customerName);
-                    order.addWidget(j);
+                    order.addWidget(selectedWidget);
 
                     final String PERSISTENCE_UNIT_NAME = "WidgetOrders";
                     EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
