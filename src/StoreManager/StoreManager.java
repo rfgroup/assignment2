@@ -1,34 +1,63 @@
 package StoreManager;
 
+import WidgetOrder.Entity.EntityManagerContainer;
+import WidgetOrder.Entity.Order;
 import WidgetOrder.Entity.Widget;
 
-import javax.swing.*;
+import java.awt.EventQueue;
+
+import javax.persistence.EntityManager;
+import javax.swing.JFrame;
+import javax.swing.JList;
+
+import java.awt.BorderLayout;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
-/**
- * Created with IntelliJ IDEA.
- * User: mike
- * Date: 11/5/13
- * Time: 7:04 PM
- * To change this template use File | Settings | File Templates.
- */
 public class StoreManager {
-    private JPanel main;
-    DefaultListModel model = new DefaultListModel();
-    JList list1 = new JList(model);
 
-    public void start() {
-        JFrame frame = new JFrame("StoreManager");
-        frame.setContentPane(new StoreManager().main);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+	private JFrame frame;
 
-        init();
+	/**
+	 * Launch the application.
+	 */
+	public void start() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					StoreManager window = new StoreManager();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public StoreManager() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 600, 500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        initializeOrdersJList();
+	}
+
+    private void initializeOrdersJList() {
+        EntityManager em = new EntityManagerContainer().getEm();
+        Collection<Order> orders = em.createNamedQuery("Order.findAll", Order.class).getResultList();
+
+        JList ordersJList = new JList(orders.toArray());
+        frame.getContentPane().add(ordersJList, BorderLayout.CENTER);
     }
 
-    private void init() {
-        model.addElement(new Widget(43, "name", "desc"));
-    }
 }

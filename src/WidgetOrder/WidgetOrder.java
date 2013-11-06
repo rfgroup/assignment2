@@ -26,7 +26,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JLabel;
-import WidgetOrder.Entity.CustomerOrder;
+import WidgetOrder.Entity.Order;
 import WidgetOrder.Entity.Widget;
 
 public class WidgetOrder extends JFrame {
@@ -100,7 +100,7 @@ public class WidgetOrder extends JFrame {
 				String customerName = textField_1.getText();
 				int quanity = Integer.parseInt(x);
 				Widget j = new Widget(quanity,selectedWidget,selectedDescription);
-				 CustomerOrder order = new CustomerOrder(customerName);
+				 Order order = new Order(customerName);
 				 order.addWidget(j);
 				
 				final String PERSISTENCE_UNIT_NAME = "WidgetOrders";
@@ -112,8 +112,8 @@ public class WidgetOrder extends JFrame {
 		        Query q = em.createQuery("select w from Widget w");
 			    List<Widget> widgetInventory = q.getResultList();
 		        q = em.createQuery("select o from CustomerOrder o");
-		  	    List<CustomerOrder> ordersFromDB = q.getResultList();
-		  	  for (CustomerOrder or : ordersFromDB)
+		  	    List<Order> ordersFromDB = q.getResultList();
+		  	  for (Order or : ordersFromDB)
 		  	  	    	System.out.println( or );
 		  	  for (Widget w : widgetInventory)
 			      System.out.println( w );

@@ -13,8 +13,9 @@ import java.util.Date;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Widget.findAll", query = "select w from Widget w"),
-    @NamedQuery(name = "Widget.findById", query = "select w from Widget w where w.id = :id")
+        @NamedQuery(name = "Widget.findAll", query = "select w from Widget w"),
+        @NamedQuery(name = "Widget.findById", query = "select w from Widget w where w.id = :id"),
+        @NamedQuery(name = "Widget.findByName", query = "select w from Widget w where w.name = :name")
 })
 public class Widget {
 

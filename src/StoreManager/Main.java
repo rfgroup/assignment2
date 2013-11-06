@@ -1,5 +1,7 @@
 package StoreManager;
 
+import WidgetOrder.CreateFixtures;
+
 import javax.swing.*;
 
 /**
@@ -11,6 +13,8 @@ import javax.swing.*;
  */
 public class Main {
     public static void main(String[] args) {
+        new CreateFixtures().run();
+
         new StoreManager().start();
     }
 }

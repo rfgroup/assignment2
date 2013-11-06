@@ -1,13 +1,4 @@
 package WidgetOrder.Entity;
-/**
- * <p>Title: Widget Inventory s</p>
- * <p>Description: CS 343 Assignment #2</p>
- * @author Aaron Cook, Kyle Kornetske, Michael Haas, Kyle Kolstad
- * @email aaron.cook@my.uwrf.edu, michael.haas@my.uwrf.edu,
- * 			kyle.kornetske@my.uwrf.edu kyle.kolstad@my.uwrf.edu
- * @date November 5th 2013
- * @team Group 4
- */ 
 
 import javax.persistence.*;
 
@@ -17,16 +8,29 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-@Entity
-public class CustomerOrder {
+/**
+ * <p>Title: Widget Inventory s</p>
+ * <p>Description: CS 343 Assignment #2</p>
+ * @author Aaron Cook, Kyle Kornetske, Michael Haas, Kyle Kolstad
+ * @email aaron.cook@my.uwrf.edu, michael.haas@my.uwrf.edu,
+ * 			kyle.kornetske@my.uwrf.edu kyle.kolstad@my.uwrf.edu
+ * @date November 5th 2013
+ * @team Group 4
+ */
+@Entity(name = "CustomerOrder")
+@NamedQueries({
+        @NamedQuery(name = "Order.findAll", query = "select o from CustomerOrder o"),
+        @NamedQuery(name = "Order.findById", query = "select o from CustomerOrder o where o.id = :id")
+})
+public class Order {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    public CustomerOrder() {
+    public Order() {
         widgets = new ArrayList<Widget>();
     }
-    public CustomerOrder(String s){
+    public Order(String s){
     	 customerName = s;
     	 widgets = new ArrayList<Widget>();
     }
@@ -38,7 +42,7 @@ public class CustomerOrder {
         return customerName;
     }
 
-    public CustomerOrder setCustomerName(String customerName) {
+    public Order setCustomerName(String customerName) {
         this.customerName = customerName;
 
         return this;
@@ -47,13 +51,13 @@ public class CustomerOrder {
     @OneToMany(cascade = CascadeType.PERSIST)
     private Collection<Widget> widgets;
 
-    public CustomerOrder addWidget(Widget widget) {
+    public Order addWidget(Widget widget) {
         widgets.add(widget);
 
         return this;
     }
 
-    public CustomerOrder removeWidget(Widget widget) {
+    public Order removeWidget(Widget widget) {
         widgets.remove(widget);
 
         return this;
